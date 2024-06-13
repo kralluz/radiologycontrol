@@ -1,0 +1,24 @@
+/* Header.css */
+#header {
+    background: linear-gradient(135deg, #0066cc, #004d99);
+    color: #ffffff;
+    padding: 20px 10px;
+    margin-bottom: 30px;
+    font-size: 24px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  #header h1 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  #header p {
+    margin: 5px 0 0;
+    font-size: 16px;
+    opacity: 0.9; /* Um pouco menos destacado que o título */
+  }
+  

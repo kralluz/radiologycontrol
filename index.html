@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leitor de PDF</title>
+    <style>
+        body {
+            background-color: #333;
+            color: #ccc;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column; /* Adicionado para organizar verticalmente */
+        }
+        #drop_zone {
+            padding: 20px;
+            border: 1px dashed #888;
+            width: 300px;
+            text-align: center;
+        }
+        #results {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="drop_zone">Arraste seu arquivo PDF aqui</div>
+    <div id="results"></div> <!-- Elemento para exibir os resultados -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf.min.js"></script>
+    <script>
+        let dropZone = document.getElementById('drop_zone');
+        let resultsDiv = document.getElementById('results');
+
+        dropZone.addEventListener('dragover', function(e) {
+            e.stopPropagation();
+            e.preventDefault();
+            e.dataTransfer.dropEffect = 'copy';
+        });
+
+        dropZone.addEventListener('drop', function(e) {
+            e.stopPropagation();
+            e.preventDefault();
+            let file = e.dataTransfer.files[0];
+            processPDF(file);
+        });
+
+        function processPDF(file) {
+            let fileReader = new FileReader();
+            fileReader.onload = function() {
+                let typedArray = new Uint8Array(this.result);
+                let loadingTask = pdfjsLib.getDocument(typedArray);
+                loadingTask.promise.then(function(pdf) {
+                    console.log('PDF loaded');
+                    
+                    // Assume one page only for simplicity
+                    pdf.getPage(1).then(function(page) {
+                        page.getTextContent().then(function(textContent) {
+                            let text = textContent.items.map(item => item.str).join(' ');
+                            analyzeText(text);
+                        });
+                    });
+                }, function(reason) {
+                    console.error(reason);
+                });
+            };
+            fileReader.readAsArrayBuffer(file);
+        }
+
+        function analyzeText(text) {
+            let countRX = (text.match(/ RX /g) || []).length;
+            let countTC = (text.match(/ TC /g) || []).length;
+            let countUS = (text.match(/ US /g) || []).length;
+            let countDO = (text.match(/DO CORPO INTEIRO|DO COLUNA LOMBAR E DO FÊMU/g) || []).length;
+
+            let totalExams = countRX + countTC + countUS + countDO;
+            resultsDiv.innerHTML = `<p>Total RX: ${countRX}</p>
+                                    <p>Total TC: ${countTC}</p>
+                                    <p>Total US: ${countUS}</p>
+                                    <p>Total DO: ${countDO}</p>
+                                    <p>Total Exams: ${totalExams}</p>`;
+        }
+    </script>
+</body>
+</html>

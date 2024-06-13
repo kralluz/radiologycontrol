@@ -1,0 +1,109 @@
+.App {
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  padding: 20 5vh;
+}
+
+/* App.css */
+.results {
+  width: 80%;
+  margin: 20px auto;
+  padding: 20px;
+  background: #f8f8f8;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.record {
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  padding: 20px;
+  margin-top: 20px;
+  position: relative; /* Para posicionamento absoluto do botão de remoção */
+  display: flex;
+  justify-content: space-between; /* Distribuição horizontal */
+  flex-wrap: wrap; /* Permitir quebra de linha para responsividade */
+  font-size: 16px; /* Tamanho de fonte adequado */
+}
+
+
+.record div {
+  margin: 5px 10px; /* Margem entre os elementos */
+}
+
+.record label {
+  font-weight: bold;
+  color: #004d99;
+}
+
+.record span {
+  color: #333;
+}
+
+.remove-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #ff4d4d;
+  border: none;
+  color: white;
+  font-size: 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s;
+  font-weight: 800;
+}
+
+.remove-button:hover {
+  background: #ff0000;
+}
+
+
+.Modal {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 500px;
+  margin: auto;
+  position: relative;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.Overlay {
+  background: rgba(0, 0, 0, 0.75);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.confirm-button, .cancel-button {
+  margin: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.confirm-button {
+  background-color: #ff4d4d;
+  color: white;
+}
+
+.cancel-button {
+  background-color: #ccc;
+  color: #333;
+}
+
+.confirm-button:hover {
+  background-color: #ff0000;
+}
+
+.cancel-button:hover {
+  background-color: #aaa;
+}
