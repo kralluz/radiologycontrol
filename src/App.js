@@ -95,7 +95,7 @@ function App() {
       <GetDataRadiologySupport addRecord={addRecord} />
       <button
         onClick={generatePdfDocument}
-        style={{ margin: "20px", padding: "10px 20px" }}
+        className="generate-pdf-button"
       >
         Gerar PDF dos Dados
       </button>

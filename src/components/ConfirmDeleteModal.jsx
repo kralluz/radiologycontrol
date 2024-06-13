@@ -14,7 +14,7 @@ const ConfirmDeleteModal = ({ isOpen, onRequestClose, onConfirm }) => {
     >
       <h2>Confirmação de Exclusão</h2>
       <p>Tem certeza de que deseja excluir este registro?</p>
-      <button onClick={onConfirm} className="confirm-button">Sim</button>
+      <button onClick={onConfirm}  className="generate-pdf-button">Sim</button>
       <button onClick={onRequestClose} className="cancel-button">Não</button>
     </Modal>
   );

@@ -1,13 +1,15 @@
 /* Header.css */
+
 #header {
-    background: linear-gradient(135deg, #0066cc, #004d99);
-    color: #ffffff;
+    background: linear-gradient(135deg, #004d99, #001f4d); /* Gradiente de azul escuro */
+    color: #ffffff; /* Texto branco */
     padding: 20px 10px;
     margin-bottom: 30px;
     font-size: 24px;
     text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Sombra mais acentuada */
     border-radius: 8px;
+    animation: fadeInDown 0.5s ease-out; /* Animação de entrada */
   }
   
   #header h1 {
@@ -19,6 +21,18 @@
   #header p {
     margin: 5px 0 0;
     font-size: 16px;
-    opacity: 0.9; /* Um pouco menos destacado que o título */
+    opacity: 0.85; /* Um pouco menos destacado que o título */
+  }
+  
+  /* Animação de entrada */
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
   

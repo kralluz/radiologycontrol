@@ -1,52 +1,69 @@
+/* App.css */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .App {
   font-family: 'Arial', sans-serif;
   text-align: center;
-  padding: 20 5vh;
+  padding: 20px 5vh;
+  background-color: #121212; /* Fundo escuro */
+  color: #e0e0e0; /* Texto claro */
 }
 
-/* App.css */
 .results {
   width: 80%;
   margin: 20px auto;
   padding: 20px;
-  background: #f8f8f8;
+  background: #1e1e1e; /* Fundo escuro para a área de resultados */
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3); /* Sombra mais profunda */
+  animation: fadeInUp 0.5s ease-out; /* Animação de entrada */
 }
+
 .record {
-  background: #ffffff;
+  background: #232323; /* Fundo escuro para os cards */
   border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.5); /* Sombra mais profunda */
   padding: 20px;
   margin-top: 20px;
-  position: relative; /* Para posicionamento absoluto do botão de remoção */
+  position: relative;
   display: flex;
   justify-content: space-between; /* Distribuição horizontal */
   flex-wrap: wrap; /* Permitir quebra de linha para responsividade */
-  font-size: 16px; /* Tamanho de fonte adequado */
+  font-size: 16px;
+  color: #e0e0e0; /* Texto claro */
+  animation: fadeInUp 0.5s ease-out; /* Animação de entrada */
 }
 
-
 .record div {
-  margin: 5px 10px; /* Margem entre os elementos */
+  margin: 5px 10px;
 }
 
 .record label {
   font-weight: bold;
-  color: #004d99;
+  color: #4886f8; /* Cor de destaque */
 }
 
 .record span {
-  color: #333;
+  color: #e0e0e0;
 }
 
 .remove-button {
   position: absolute;
   top: 10px;
   right: 10px;
-  background: #ff4d4d;
+  background: #cf6679; /* Fundo do botão de remoção */
   border: none;
-  color: white;
+  color: #121212; /* Texto escuro */
   font-size: 12px;
   border-radius: 50%;
   cursor: pointer;
@@ -55,23 +72,24 @@
 }
 
 .remove-button:hover {
-  background: #ff0000;
+  background: #b00020; /* Fundo do botão de remoção ao passar o mouse */
 }
 
-
 .Modal {
-  background: white;
+  background: #1e1e1e; /* Fundo do modal */
   padding: 20px;
   border-radius: 8px;
   max-width: 500px;
   margin: auto;
   position: relative;
   text-align: center;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5); /* Sombra mais profunda */
+  color: #e0e0e0; /* Texto claro */
+  animation: fadeInUp 0.5s ease-out; /* Animação de entrada */
 }
 
 .Overlay {
-  background: rgba(0, 0, 0, 0.75);
+  background: rgba(0, 0, 0, 0.85); /* Fundo mais opaco */
   position: fixed;
   top: 0;
   left: 0;
@@ -91,19 +109,70 @@
 }
 
 .confirm-button {
-  background-color: #ff4d4d;
-  color: white;
+  background-color: #cf6679; /* Fundo do botão de confirmação */
+  color: #121212; /* Texto escuro */
 }
 
 .cancel-button {
-  background-color: #ccc;
-  color: #333;
+  background-color: #333; /* Fundo do botão de cancelamento */
+  color: #e0e0e0; /* Texto claro */
 }
 
 .confirm-button:hover {
-  background-color: #ff0000;
+  background-color: #b00020; /* Fundo do botão de confirmação ao passar o mouse */
 }
 
 .cancel-button:hover {
-  background-color: #aaa;
+  background-color: #555; /* Fundo do botão de cancelamento ao passar o mouse */
+}
+
+/* Estilo para inputs e botões no formulário */
+input[type="date"],
+input[type="time"],
+input[type="text"],
+
+
+input[type="date"]:focus,
+input[type="time"]:focus,
+input[type="text"]:focus,
+
+
+button[type="submit"] {
+  background: linear-gradient(135deg, #004d99, #001f4d);  /* Fundo do botão de adicionar */
+  color: #121212; /* Texto escuro */
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background: linear-gradient(135deg, #004d99, #001f4d);  /* Fundo do botão de adicionar ao passar o mouse */
+}
+
+
+.generate-pdf-button {
+  background: linear-gradient(135deg, #004d99, #001f4d);/* Gradiente de roxo */
+  color: #ffffff; /* Texto escuro */
+  padding: 10px 20px;
+  margin: 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease; /* Transições suaves */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Sombra */
+}
+
+.generate-pdf-button:hover {
+  background: linear-gradient(135deg, #004d99, #001f4d); /* Cor mais clara no hover */
+  transform: translateY(-2px); /* Efeito de "levitação" */
+}
+
+.generate-pdf-button:active {
+  background: linear-gradient(135deg, #004d99, #001f4d); /* Volta ao original no clique */
+  transform: translateY(0); /* Remove o efeito de "levitação" */
+}
+
+.generate-pdf-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(187, 134, 252, 0.4); /* Sombra de foco */
 }

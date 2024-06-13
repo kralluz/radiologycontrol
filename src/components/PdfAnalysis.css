@@ -1,16 +1,32 @@
 /* PdfAnalysis.css */
-.drop_zone {
-    background-color: #f9f9f9;
-    border: 2px dashed #004d99;
+
+@keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .drop_zone {
+    background-color: #1e1e1e; 
+    border: 2px dashed   #004d99; /* Borda roxa clara */
     border-radius: 10px;
     padding: 20px;
     text-align: center;
     margin: 20px;
-    transition: background-color 0.3s ease-in-out;
+    transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+    color: #e0e0e0; /* Texto claro */
+    animation: fadeInUp 0.5s ease-out; /* Animação de entrada */
+    color: #ffffff;
   }
   
   .drop_zone.over {
-    background-color: #e0f7fa;
+    background-color: #333333; /* Fundo mais claro ao arrastar */
+    border-color: #ff4d4d; /* Borda vermelha ao arrastar */
   }
   
   .drop_zone p {
@@ -19,16 +35,18 @@
   
   .button {
     display: inline-block;
-    background-color: #004d99;
-    color: white;
+    background: linear-gradient(135deg, #004d99, #001f4d); /* Fundo do botão */
+    color: #e0e0e0; 
+    font-weight: 600;/* Texto escuro */
     padding: 10px 20px;
     margin: 10px;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, color 0.3s;
   }
   
   .button:hover {
-    background-color: #003366;
+    background-color: #a366ff; /* Fundo do botão ao passar o mouse */
+    color: #ffffff; /* Texto claro ao passar o mouse */
   }
   
