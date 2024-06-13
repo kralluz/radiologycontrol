@@ -50,3 +50,54 @@
     color: #ffffff; /* Texto claro ao passar o mouse */
   }
   
+
+  .drop_zone {
+    background-color: #000000;
+    border: 2px dashed #004d99;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    margin: 20px;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .drop_zone.over {
+    background-color: #000000;
+  }
+  
+  .drop_zone p {
+    margin: 10px 0;
+  }
+  
+  .button {
+    display: inline-block;
+    background-color: #004d99;
+    color: white;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .button:hover {
+    background-color: #003366;
+  }
+  
+  .metadata-results {
+    margin-top: 20px;
+    text-align: left;
+    color: #333;
+  }
+  
+  .metadata-results h3, .metadata-results h4 {
+    margin: 5px 0;
+  }
+  
+  .results {
+    background: #383838;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 4px;
+    white-space: pre-wrap;
+  }

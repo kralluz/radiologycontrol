@@ -1,7 +1,9 @@
-import React from 'react';
-import './PdfAnalysis.css'; // Certifique-se de que o caminho está correto
+import React, { useState } from 'react';
+import './PdfAnalysis.css'; // Arquivo de estilos para PdfAnalysis
 
 function PdfAnalysis({ setPdfResults }) {
+  const [analysisResults, setAnalysisResults] = useState("");
+
   const processPDF = (file) => {
     const fileReader = new FileReader();
     fileReader.onload = function() {
@@ -15,7 +17,7 @@ function PdfAnalysis({ setPdfResults }) {
           });
         });
       }, reason => {
-        console.error('Error processing PDF: ', reason);
+        console.error(reason);
       });
     };
     fileReader.readAsArrayBuffer(file);
@@ -28,15 +30,14 @@ function PdfAnalysis({ setPdfResults }) {
     const countDO = (text.match(/DO CORPO INTEIRO|DO COLUNA LOMBAR E DO FÊMU/g) || []).length;
     const resultsString = `Total RX: ${countRX}\nTotal TC: ${countTC}\nTotal US: ${countUS}\nTotal DO: ${countDO}\nTotal Exams: ${countDO + countRX + countTC + countUS}`;
     setPdfResults(resultsString);
+    setAnalysisResults(resultsString); // Atualiza o estado local com os resultados
   };
 
   const handleDrop = (e) => {
     e.preventDefault();
-    e.target.classList.remove('over');
     const file = e.dataTransfer.files[0];
-    if (file) {
-      processPDF(file);
-    }
+    processPDF(file);
+    e.target.classList.remove('over');
   };
 
   const handleDragOver = (e) => {
@@ -51,17 +52,19 @@ function PdfAnalysis({ setPdfResults }) {
   };
 
   const handleChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      processPDF(file);
-    }
+    processPDF(e.target.files[0]);
   };
 
   return (
     <div className="drop_zone" onDrop={handleDrop} onDragOver={handleDragOver} onDragLeave={handleDragLeave}>
       <p>Arraste seu arquivo PDF aqui ou clique no botão abaixo para escolher o arquivo</p>
-      <input type="file" onChange={handleChange} accept="application/pdf" style={{ display: 'none' }} id="fileInput" />
+      <input type="file" onChange={handleChange} accept="application/pdf" style={{ display: 'none' }} id="fileInput"/>
       <label htmlFor="fileInput" className="button">Escolher arquivo</label>
+      {analysisResults && (
+        <div className="analysis-results">
+          <pre>{analysisResults}</pre> {/* Exibe os resultados da análise */}
+        </div>
+      )}
     </div>
   );
 }
