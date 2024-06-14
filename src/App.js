@@ -1,4 +1,3 @@
-// App.js
 import React, { useState } from "react";
 import "./App.css";
 import { jsPDF } from "jspdf";
@@ -10,7 +9,7 @@ import ConfirmDeleteModal from "./components/ConfirmDeleteModal";
 
 function App() {
   const [records, setRecords] = useState([]);
-  const [pdfResults, setPdfResults] = useState("");
+  const [pdfResults, setPdfResults] = useState(""); // Este estado armazena os resultados da análise do PDF
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [indexToDelete, setIndexToDelete] = useState(null);
 
@@ -24,8 +23,8 @@ function App() {
   };
 
   const closeModal = () => {
-    setIndexToDelete(null);
     setIsModalOpen(false);
+    setIndexToDelete(null);
   };
 
   const confirmDelete = () => {
@@ -40,18 +39,20 @@ function App() {
     const marginLeft = 10;
     let yOffset = 10;
 
-    // Título
     doc.setFontSize(16);
-    doc.text("RadiologyControl - Relatório de Procedimentos", marginLeft, yOffset);
+    doc.text(
+      "RadiologyControl - Relatório de Procedimentos",
+      marginLeft,
+      yOffset
+    );
     yOffset += 15;
 
-    // Resultados da Análise de PDF
     doc.setFontSize(14);
-    doc.text("Resultados da Análise de PDF:", marginLeft, yOffset);
+    doc.text("Relatório de exames:", marginLeft, yOffset);
     yOffset += 10;
 
     doc.setFontSize(12);
-    pdfResults.split('\n').forEach(line => {
+    pdfResults.split("\n").forEach((line) => {
       doc.text(line, marginLeft, yOffset);
       yOffset += 7;
     });
@@ -64,22 +65,24 @@ function App() {
       doc.text("Registros Cirúrgicos:", marginLeft, yOffset);
       yOffset += 10;
 
-      const tableData = records.map(record => [
-        `${record.date} ${record.time}`, // Combina data e hora
+      const tableData = records.map((record) => [
+        `${record.date} ${record.time}`,
         record.timeSpent,
         record.doctorName,
         record.radiologistName,
-        record.procedureName
+        record.procedureName,
       ]);
 
       doc.autoTable({
         startY: yOffset,
-        head: [['Data e Hora', 'Horas', 'Médico', 'Radiologista', 'Procedimento']],
+        head: [
+          ["Data e Hora", "Horas", "Médico", "Radiologista", "Procedimento"],
+        ],
         body: tableData,
         margin: { top: 10, left: 10, right: 10 },
-        styles: { cellPadding: 3, fontSize: 12, halign: 'center' },
+        styles: { cellPadding: 3, fontSize: 12, halign: "center" },
         headStyles: { fillColor: [0, 77, 153] }, // Cor azul similar ao header
-        theme: 'grid' // Estilo de tabela
+        theme: "grid",
       });
 
       yOffset = doc.lastAutoTable.finalY + 10; // Atualiza o yOffset para o final da tabela
@@ -93,24 +96,20 @@ function App() {
       <Header />
       <PdfAnalysis setPdfResults={setPdfResults} />
       <GetDataRadiologySupport addRecord={addRecord} />
-      <button
-        onClick={generatePdfDocument}
-        className="generate-pdf-button" /* Use a classe CSS aqui */
-      >
+      <button onClick={generatePdfDocument} className="generate-pdf-button">
         Gerar PDF dos Dados
       </button>
       <div className="results">
         {records.map((record, index) => (
           <div key={index} className="record">
-            <button
-              className="remove-button"
-              onClick={() => openModal(index)}
-            >
+            <button className="remove-button" onClick={() => openModal(index)}>
               X
             </button>
             <div>
               <label>Data e Hora:</label>
-              <span>{record.date} {record.time}</span>
+              <span>
+                {record.date} {record.time}
+              </span>
             </div>
             <div>
               <label>Horas gastas:</label>
