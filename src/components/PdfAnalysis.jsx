@@ -3,12 +3,14 @@ import "./PdfAnalysis.css"; // Arquivo de estilos para PdfAnalysis
 
 function PdfAnalysis({ setPdfResults }) {
   const [analysisResults, setAnalysisResults] = useState("");
-  const [tcCount, setTcCount] = useState(0); // Estado para contar as ocorrências de 'TC'
-  const [rxCount, setRxCount] = useState(0); // Estado para contar as ocorrências de 'RX'
-  const [lombarFemurCount, setLombarFemurCount] = useState(0); // Conta 'do coluna lombar e do fêmur'
-  const [corpoInteiroCount, setCorpoInteiroCount] = useState(0); // Conta 'do corpo inteiro'
+  const [tcCount, setTcCount] = useState(0);
+  const [rxCount, setRxCount] = useState(0);
+  const [lombarFemurCount, setLombarFemurCount] = useState(0);
+  const [corpoInteiroCount, setCorpoInteiroCount] = useState(0);
+  const [fileUploaded, setFileUploaded] = useState(false); // Estado para controlar a exibição da área de drop
 
   const processPDF = (file) => {
+    setFileUploaded(true); // Atualiza o estado para indicar que um arquivo foi carregado
     const fileReader = new FileReader();
     fileReader.onload = function () {
       const typedArray = new Uint8Array(this.result);
@@ -17,7 +19,6 @@ function PdfAnalysis({ setPdfResults }) {
         (pdf) => {
           const numPages = pdf.numPages;
           const pagePromises = [];
-
           for (let pageNum = 1; pageNum <= numPages; pageNum++) {
             pagePromises.push(
               pdf.getPage(pageNum).then((page) => {
@@ -34,6 +35,7 @@ function PdfAnalysis({ setPdfResults }) {
           Promise.all(pagePromises).then((pagesTexts) => {
             const fullText = pagesTexts.join(" ");
             setAnalysisResults(fullText); // Atualiza o estado com os resultados da análise de todas as páginas
+            // Calcula as contagens de termos específicos
             const tcTotalCount = (
               fullText.match(/\bTC\b(?=[ ,.;?!]|$)/gi) || []
             ).length;
@@ -46,10 +48,10 @@ function PdfAnalysis({ setPdfResults }) {
             const corpoInteiroTotalCount = (
               fullText.match(/do corpo inteiro/gi) || []
             ).length;
-            setTcCount(tcTotalCount); // Atualiza o contador de 'TC' no estado
-            setRxCount(rxTotalCount); // Atualiza o contador de 'RX' no estado
-            setLombarFemurCount(lombarFemurTotalCount); // Atualiza o contador para 'do coluna lombar e do fêmur'
-            setCorpoInteiroCount(corpoInteiroTotalCount); // Atualiza o contador para 'do corpo inteiro'
+            setTcCount(tcTotalCount);
+            setRxCount(rxTotalCount);
+            setLombarFemurCount(lombarFemurTotalCount);
+            setCorpoInteiroCount(corpoInteiroTotalCount);
             setPdfResults(
               `Tomografias Realizadas: ${tcTotalCount}\nRaio-X Realizados: ${rxTotalCount}\nDesitometrias Realizadas: ${
                 lombarFemurTotalCount + corpoInteiroTotalCount
@@ -93,35 +95,33 @@ function PdfAnalysis({ setPdfResults }) {
   };
 
   return (
-    <div
-      className="drop_zone"
-      onDrop={handleDrop}
-      onDragOver={handleDragOver}
-      onDragLeave={handleDragLeave}
-    >
-      <p>
-        Arraste seu arquivo PDF aqui ou clique no botão abaixo para escolher o
-        arquivo
-      </p>
-      <input
-        type="file"
-        onChange={handleChange}
-        accept="application/pdf"
-        style={{ display: "none" }}
-        id="fileInput"
-      />
-      <label htmlFor="fileInput" className="button">
-        Escolher arquivo
-      </label>
-      {analysisResults && (
-        <div className="analysis-results">
-          <p>Tomografias realizadas: {tcCount}</p>{" "}
-          {/* Exibe o contador de 'TC' */}
-          <p>Raio-x realizados: {rxCount}</p> {/* Exibe o contador de 'RX' */}
+    <div className="pdf-analysis-container">
+      {!fileUploaded ? (
+        <div
+          className="drop_zone"
+          onDrop={handleDrop}
+          onDragOver={handleDragOver}
+          onDragLeave={handleDragLeave}
+        >
           <p>
-            Desitometrias ralizadas: {lombarFemurCount + corpoInteiroCount}
-          </p>{" "}
-          {/* Exibe o contador de 'do coluna lombar e do fêmur' */}
+            Arraste seu arquivo PDF aqui ou clique no botão abaixo para escolher o arquivo
+          </p>
+          <input
+            type="file"
+            onChange={handleChange}
+            accept="application/pdf"
+            style={{ display: "none" }}
+            id="fileInput"
+          />
+          <label htmlFor="fileInput" className="button">
+            Escolher arquivo
+          </label>
+        </div>
+      ) : (
+        <div className="analysis-results fadeIn">
+          <p>Tomografias realizadas: {tcCount}</p>
+          <p>Raio-x realizados: {rxCount}</p>
+          <p>Desitometrias realizadas: {lombarFemurCount + corpoInteiroCount}</p>
         </div>
       )}
     </div>
