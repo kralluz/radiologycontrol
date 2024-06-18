@@ -1,5 +1,3 @@
-/* App.css */
-
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -12,36 +10,60 @@
 }
 
 .App {
-  font-family: 'Arial', sans-serif;
-  text-align: center;
+  font-family: "Arial", sans-serif;
   padding: 20px 5vh;
-  background-color: #121212; /* Fundo escuro */
-  color: #e0e0e0; /* Texto claro */
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+.main {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.surgical-center {
+  max-width: 600px;
 }
 
 .results {
-  width: 80%;
   margin: 20px auto;
   padding: 20px;
-  background: #1e1e1e; /* Fundo escuro para a área de resultados */
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3); /* Sombra mais profunda */
-  animation: fadeInUp 0.5s ease-out; /* Animação de entrada */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  animation: fadeInUp 0.5s ease-out;
+  background: #ff0000 !important;
 }
-
 .record {
-  background: #232323; /* Fundo escuro para os cards */
+  background: #232323;
   border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.5); /* Sombra mais profunda */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
   padding: 20px;
   margin-top: 20px;
   position: relative;
   display: flex;
-  justify-content: space-between; /* Distribuição horizontal */
-  flex-wrap: wrap; /* Permitir quebra de linha para responsividade */
+  justify-content: space-between;
+  flex-wrap: wrap;
   font-size: 16px;
-  color: #e0e0e0; /* Texto claro */
-  animation: fadeInUp 0.5s ease-out; /* Animação de entrada */
+  color: #e0e0e0;
+  animation: fadeInUp 0.5s ease-out;
+}
+
+/*
+
+.record {
+  background: #232323;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  margin-top: 20px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  font-size: 16px;
+  color: #e0e0e0;
+  animation: fadeInUp 0.5s ease-out;
 }
 
 .record div {
@@ -50,7 +72,7 @@
 
 .record label {
   font-weight: bold;
-  color: #4886f8; /* Cor de destaque */
+  color: #4886f8;
 }
 
 .record span {
@@ -61,9 +83,9 @@
   position: absolute;
   top: 10px;
   right: 10px;
-  background: #cf6679; /* Fundo do botão de remoção */
+  background: #cf6679;
   border: none;
-  color: #121212; /* Texto escuro */
+  color: #121212;
   font-size: 12px;
   border-radius: 50%;
   cursor: pointer;
@@ -72,24 +94,24 @@
 }
 
 .remove-button:hover {
-  background: #b00020; /* Fundo do botão de remoção ao passar o mouse */
+  background: #b00020;
 }
 
 .Modal {
-  background: #1e1e1e; /* Fundo do modal */
+  background: #1e1e1e;
   padding: 20px;
   border-radius: 8px;
   max-width: 500px;
   margin: auto;
   position: relative;
   text-align: center;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.5); /* Sombra mais profunda */
-  color: #e0e0e0; /* Texto claro */
-  animation: fadeInUp 0.5s ease-out; /* Animação de entrada */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  color: #e0e0e0;
+  animation: fadeInUp 0.5s ease-out;
 }
 
 .Overlay {
-  background: rgba(0, 0, 0, 0.85); /* Fundo mais opaco */
+  background: rgba(0, 0, 0, 0.85);
   position: fixed;
   top: 0;
   left: 0;
@@ -100,7 +122,8 @@
   align-items: center;
 }
 
-.confirm-button, .cancel-button {
+.confirm-button,
+.cancel-button {
   margin: 10px;
   padding: 10px 20px;
   border: none;
@@ -109,48 +132,42 @@
 }
 
 .confirm-button {
-  background-color: #cf6679; /* Fundo do botão de confirmação */
-  color: #121212; /* Texto escuro */
+  background-color: #cf6679;
+  color: #121212;
 }
 
 .cancel-button {
-  background-color: #333; /* Fundo do botão de cancelamento */
-  color: #e0e0e0; /* Texto claro */
+  background-color: #333;
+  color: #e0e0e0;
 }
 
 .confirm-button:hover {
-  background-color: #b00020; /* Fundo do botão de confirmação ao passar o mouse */
+  background-color: #b00020;
 }
 
 .cancel-button:hover {
-  background-color: #555; /* Fundo do botão de cancelamento ao passar o mouse */
+  background-color: #555;
 }
 
-/* Estilo para inputs e botões no formulário */
 input[type="date"],
 input[type="time"],
 input[type="text"],
-
-
 input[type="date"]:focus,
 input[type="time"]:focus,
 input[type="text"]:focus,
-
-
 button[type="submit"] {
-  background: linear-gradient(135deg, #004d99, #001f4d);  /* Fundo do botão de adicionar */
-  color: #121212; /* Texto escuro */
+  background: linear-gradient(135deg, #004d99, #001f4d);
+  color: #121212;
   cursor: pointer;
 }
 
 button[type="submit"]:hover {
-  background: linear-gradient(135deg, #004d99, #001f4d);  /* Fundo do botão de adicionar ao passar o mouse */
+  background: linear-gradient(135deg, #004d99, #001f4d);
 }
 
-
 .generate-pdf-button {
-  background: linear-gradient(135deg, #004d99, #001f4d);/* Gradiente de roxo */
-  color: #ffffff; /* Texto escuro */
+  background: linear-gradient(135deg, #004d99, #001f4d);
+  color: #ffffff;
   padding: 10px 20px;
   margin: 20px;
   border: none;
@@ -158,35 +175,35 @@ button[type="submit"]:hover {
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.3s ease; /* Transições suaves */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Sombra */
+  transition: background 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 .generate-pdf-button:hover {
-  background: linear-gradient(135deg, #004d99, #001f4d); /* Cor mais clara no hover */
-  transform: translateY(-2px); /* Efeito de "levitação" */
+  background: linear-gradient(135deg, #004d99, #001f4d);
+  transform: translateY(-2px);
 }
 
 .generate-pdf-button:active {
-  background: linear-gradient(135deg, #004d99, #001f4d); /* Volta ao original no clique */
-  transform: translateY(0); /* Remove o efeito de "levitação" */
+  background: linear-gradient(135deg, #004d99, #001f4d);
+  transform: translateY(0);
 }
 
 .generate-pdf-button:focus {
   outline: none;
-  box-shadow: 0 0 0 4px rgba(187, 134, 252, 0.4); /* Sombra de foco */
+  box-shadow: 0 0 0 4px rgba(187, 134, 252, 0.4);
 }
-
 .float {
   position: fixed;
   bottom: 20px;
   right: 20px;
   padding: 10px 20px;
-  background-color: #0c7688; /* ou outra cor que prefira */
+  background-color: #0c7688;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
   z-index: 999;
 }
+*/
