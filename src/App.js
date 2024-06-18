@@ -8,6 +8,8 @@ import PdfAnalysis from "./components/PdfAnalysis";
 import Header from "./components/Header";
 import ConfirmDeleteModal from "./components/ConfirmDeleteModal";
 import GetDataContrastEvent from "./components/GetDataContrastEvent";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
   const [records, setRecords] = useState([]);

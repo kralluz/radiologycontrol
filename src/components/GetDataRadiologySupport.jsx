@@ -1,7 +1,5 @@
-// GetDataRadiologySupport.js
 import React, { useState } from "react";
-import "./GetDataRadiologySupport.css";
-import { FaPlus, FaTimes } from "react-icons/fa"; // Importar ícones
+import { FaPlus, FaTimes } from "react-icons/fa";
 
 function GetDataRadiologySupport({ addRecord }) {
   const [formData, setFormData] = useState({
@@ -52,78 +50,92 @@ function GetDataRadiologySupport({ addRecord }) {
   };
 
   return (
-    <div className="card">
-      <h3>Centro Cirurgico</h3>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label>Data</label>
-          <input
-            type="date"
-            name="date"
-            value={formData.date}
-            onChange={handleChange}
-            required
-          />
+    <div className="card bg-dark text-light">
+      <div className="card-body">
+        <h3 className="card-title">Centro Cirúrgico</h3>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group mb-4">
+            <label>Data:</label>
+            <input
+              type="date"
+              className="form-control bg-dark text-light"
+              name="date"
+              value={formData.date}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-          <label>Início</label>
-          <input
-            type="time"
-            name="startTime"
-            value={formData.startTime}
-            onChange={handleChange}
-            required
-          />
+          <div className="form-group mb-4">
+            <label>Início:</label>
+            <input
+              type="time"
+              className="form-control bg-dark text-light"
+              name="startTime"
+              value={formData.startTime}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-          <label>Fim</label>
-          <input
-            type="time"
-            name="endTime"
-            value={formData.endTime}
-            onChange={handleChange}
-            required
-          />
+          <div className="form-group mb-4">
+            <label>Fim:</label>
+            <input
+              type="time"
+              className="form-control bg-dark text-light"
+              name="endTime"
+              value={formData.endTime}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-          <label>Médico</label>
-          <input
-            type="text"
-            name="doctorName"
-            value={formData.doctorName}
-            onChange={handleChange}
-            required
-          />
+          <div className="form-group mb-4">
+            <label>Médico:</label>
+            <input
+              type="text"
+              className="form-control bg-dark text-light"
+              name="doctorName"
+              value={formData.doctorName}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-          <label>Radiologista</label>
-          <input
-            type="text"
-            name="radiologistName"
-            value={formData.radiologistName}
-            onChange={handleChange}
-            required
-          />
+          <div className="form-group mb-4">
+            <label>Técnico:</label>
+            <input
+              type="text"
+              className="form-control bg-dark text-light"
+              name="radiologistName"
+              value={formData.radiologistName}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-          <label>Procedimento</label>
-          <input
-            type="text"
-            name="procedureName"
-            value={formData.procedureName}
-            onChange={handleChange}
-            required
-          />
-        </div>
+          <div className="form-group mb-4">
+            <label>Procedimento:</label>
+            <input
+              type="text"
+              className="form-control bg-dark text-light"
+              name="procedureName"
+              value={formData.procedureName}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-        <div className="button-group">
-          <button
-            type="button"
-            className="generate-pdf-button"
-            onClick={clearForm}
-          >
-            <FaTimes color="white" />
-          </button>
-          <button type="submit" className="generate-pdf-button">
-            <FaPlus color="white" />
-          </button>
-        </div>
-      </form>
+          <div className="d-flex justify-content-between mt-3">
+            <button type="button" className="btn btn-secondary" onClick={clearForm}>
+              <FaTimes /> Limpar
+            </button>
+            <button type="submit" className="btn btn-primary">
+              <FaPlus /> Adicionar
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

@@ -1,3 +1,7 @@
+p{
+  color:#e0e0e0 ;
+}
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -23,7 +27,11 @@
 }
 
 .surgical-center {
-  max-width: 600px;
+  width: 30%;
+}
+
+.contrast-events{
+  width: 30%;
 }
 
 .results {
@@ -49,6 +57,73 @@
   animation: fadeInUp 0.5s ease-out;
 }
 
+.generate-pdf-button {
+  background: linear-gradient(135deg, #004d99, #001f4d);
+  color: #ffffff;
+  padding: 10px 20px;
+  margin: 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.generate-pdf-button:hover {
+  background: linear-gradient(135deg, #004d99, #001f4d);
+  transform: translateY(-2px);
+}
+
+.generate-pdf-button:active {
+  background: linear-gradient(135deg, #004d99, #001f4d);
+  transform: translateY(0);
+}
+
+.generate-pdf-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(187, 134, 252, 0.4);
+}
+.float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  background-color: #0c7688;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+  z-index: 999;
+}
+
+.Modal {
+  background: #1e1e1e;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 500px;
+  margin: auto;
+  position: relative;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  color: #e0e0e0;
+  animation: fadeInUp 0.5s ease-out;
+}
+
+
+.Overlay {
+  background: rgba(0, 0, 0, 0.85);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 /*
 
 .record {
@@ -97,30 +172,6 @@
   background: #b00020;
 }
 
-.Modal {
-  background: #1e1e1e;
-  padding: 20px;
-  border-radius: 8px;
-  max-width: 500px;
-  margin: auto;
-  position: relative;
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-  color: #e0e0e0;
-  animation: fadeInUp 0.5s ease-out;
-}
-
-.Overlay {
-  background: rgba(0, 0, 0, 0.85);
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 .confirm-button,
 .cancel-button {
@@ -165,45 +216,4 @@ button[type="submit"]:hover {
   background: linear-gradient(135deg, #004d99, #001f4d);
 }
 
-.generate-pdf-button {
-  background: linear-gradient(135deg, #004d99, #001f4d);
-  color: #ffffff;
-  padding: 10px 20px;
-  margin: 20px;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s ease, transform 0.3s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-}
-
-.generate-pdf-button:hover {
-  background: linear-gradient(135deg, #004d99, #001f4d);
-  transform: translateY(-2px);
-}
-
-.generate-pdf-button:active {
-  background: linear-gradient(135deg, #004d99, #001f4d);
-  transform: translateY(0);
-}
-
-.generate-pdf-button:focus {
-  outline: none;
-  box-shadow: 0 0 0 4px rgba(187, 134, 252, 0.4);
-}
-.float {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  padding: 10px 20px;
-  background-color: #0c7688;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
-  z-index: 999;
-}
 */

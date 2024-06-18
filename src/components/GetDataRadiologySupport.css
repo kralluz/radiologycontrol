@@ -12,44 +12,47 @@
 }
 
 .card {
-    background: #232323; /* Fundo escuro para o card */
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5); /* Sombra mais profunda */
+    background: #232323;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
     border-radius: 10px;
-    padding: 20px;
-    margin: 20px auto;
-    width: 90%; /* Responsivo, ajusta com a tela */
-    max-width: 500px; /* Limita a largura máxima */
+    padding: 20px ;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: #e0e0e0; /* Texto claro */
-    animation: fadeInUp 0.5s ease-out; /* Animação de entrada */
+    justify-content: center;
+    color: #e0e0e0;
+    animation: fadeInUp 1s ease-out;
 }
 
-.card form {
+.form-group {
     width: 100%;
+    background-color: #001f4d;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    gap: 16px;
 }
 
-.card input, .card button {
-    width: 90%; /* Garante que todos os inputs e botão tenham a mesma largura */
-    padding: 12px;
-    margin-top: 8px;
+.card input{
+    width: 100%;
+    padding: 12px 0;
     border-radius: 8px;
-    border: 1px solid #444; /* Borda mais escura */
-    background: #2b2b2b; /* Fundo escuro para inputs */
-    color: #e0e0e0; /* Texto claro */
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3); /* Sombra interna */
+    border: 1px solid #444;
+    background: #2b2b2b;
+    color: #e0e0e0;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
     transition: background-color 0.3s, border 0.3s;
 }
 
 .card input:focus {
-    background: #3c3c3c; /* Fundo mais claro ao focar */
-    border: 1px solid #bb86fc; /* Borda de destaque ao focar */
+    background: #3c3c3c;
+    border: 1px solid #bb86fc;
 }
 
 .card button {
-  background: linear-gradient(135deg, #004d99, #001f4d); /* Fundo do botão de adicionar */
-    color: #121212; /* Texto escuro */
+  background: linear-gradient(135deg, #004d99, #001f4d);
+    color: #121212;
     font-weight: bold;
     cursor: pointer;
     border: none;
@@ -57,7 +60,7 @@
 }
 
 .card button:hover {
-  background: linear-gradient(135deg, #004d99, #001f4d); /* Fundo do botão de adicionar ao passar o mouse */
+  background: linear-gradient(135deg, #004d99, #001f4d);
 }
 
 .button-group{
