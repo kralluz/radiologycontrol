@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import { FaTimes, FaPlus } from "react-icons/fa";
-import "./GetDataContrastEvent.css";
+import React, { useState } from 'react';
+import { FaTimes, FaPlus } from 'react-icons/fa';
+import './GetDataContrastEvent.css';
 
 function GetDataContrastEvent({ addContrastEvent }) {
   const [formData, setFormData] = useState({
-    eventType: "extravasamento de contraste",
-    contrastAmount: "",
-    occurrenceDate: "",
-    patientId: "",
-    patientFirstName: "",
-    report: "",
+    eventType: 'extravasamento de contraste',
+    contrastAmount: '',
+    occurrenceDate: '',
+    patientId: '',
+    patientFirstName: '',
+    report: '',
   });
 
   const [submittedData, setSubmittedData] = useState(null);
@@ -23,23 +23,23 @@ function GetDataContrastEvent({ addContrastEvent }) {
     addContrastEvent(formData);
     setSubmittedData(formData);
     setFormData({
-      eventType: "extravasamento de contraste",
-      contrastAmount: "",
-      occurrenceDate: "",
-      patientId: "",
-      patientFirstName: "",
-      report: "",
+      eventType: 'extravasamento de contraste',
+      contrastAmount: '',
+      occurrenceDate: '',
+      patientId: '',
+      patientFirstName: '',
+      report: '',
     });
   };
 
   const clearForm = () => {
     setFormData({
-      eventType: "extravasamento de contraste",
-      contrastAmount: "",
-      occurrenceDate: "",
-      patientId: "",
-      patientFirstName: "",
-      report: "",
+      eventType: 'extravasamento de contraste',
+      contrastAmount: '',
+      occurrenceDate: '',
+      patientId: '',
+      patientFirstName: '',
+      report: '',
     });
   };
 
@@ -113,7 +113,11 @@ function GetDataContrastEvent({ addContrastEvent }) {
             <small className="text-light">{formData.report.length}/200</small>
           </div>
           <div className="d-flex justify-content-between mt-3">
-            <button type="button" className="btn btn-secondary" onClick={clearForm}>
+            <button
+              type="button"
+              className="btn btn-secondary"
+              onClick={clearForm}
+            >
               <FaTimes /> Limpar
             </button>
             <button type="submit" className="btn btn-primary">
@@ -121,29 +125,6 @@ function GetDataContrastEvent({ addContrastEvent }) {
             </button>
           </div>
         </form>
-        {submittedData && (
-          <div className="submitted-data mt-4 bg-secondary p-3 rounded">
-            <h3>Dados Submetidos:</h3>
-            <p>
-              <strong>Tipo de Evento:</strong> {submittedData.eventType}
-            </p>
-            <p>
-              <strong>Quantidade de Contraste:</strong> {submittedData.contrastAmount} mL
-            </p>
-            <p>
-              <strong>Data de Ocorrência:</strong> {submittedData.occurrenceDate}
-            </p>
-            <p>
-              <strong>ID do Paciente:</strong> {submittedData.patientId}
-            </p>
-            <p>
-              <strong>Nome do Paciente:</strong> {submittedData.patientFirstName}
-            </p>
-            <p>
-              <strong>Relatório:</strong> {submittedData.report}
-            </p>
-          </div>
-        )}
       </div>
     </div>
   );

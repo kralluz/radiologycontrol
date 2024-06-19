@@ -1,16 +1,5 @@
-import { GoMoveToEnd } from 'react-icons/go';
-import { MdStart } from 'react-icons/md';
-import { FaHourglassEnd } from 'react-icons/fa6';
-import { LuTimer } from 'react-icons/lu';
-import {
-  FaCalendarAlt,
-  FaClock,
-  FaUserMd,
-  FaUserNurse,
-  FaProcedures,
-} from 'react-icons/fa';
-import { FaPlus, FaTimes, FaTrashAlt } from 'react-icons/fa';
 import React, { useState } from 'react';
+import { FaTrashAlt } from 'react-icons/fa';
 import './App.css';
 import { jsPDF } from 'jspdf';
 import 'jspdf-autotable';
@@ -21,12 +10,14 @@ import ConfirmDeleteModal from './components/ConfirmDeleteModal';
 import GetDataContrastEvent from './components/GetDataContrastEvent';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+
 function App() {
   const [records, setRecords] = useState([]);
   const [contrastEvents, setContrastEvents] = useState([]);
   const [pdfResults, setPdfResults] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [indexToDelete, setIndexToDelete] = useState(null);
+  const [deleteType, setDeleteType] = useState('');
 
   const addContrastEvent = (newEvent) => {
     setContrastEvents([...contrastEvents, newEvent]);
@@ -36,19 +27,25 @@ function App() {
     setRecords([...records, newRecord]);
   };
 
-  const openModal = (index) => {
+  const openModal = (index, type) => {
     setIndexToDelete(index);
+    setDeleteType(type);
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
     setIndexToDelete(null);
+    setDeleteType('');
   };
 
   const confirmDelete = () => {
     if (indexToDelete !== null) {
-      setRecords(records.filter((_, index) => index !== indexToDelete));
+      if (deleteType === 'record') {
+        setRecords(records.filter((_, index) => index !== indexToDelete));
+      } else if (deleteType === 'contrastEvent') {
+        setContrastEvents(contrastEvents.filter((_, index) => index !== indexToDelete));
+      }
       closeModal();
     }
   };
@@ -162,6 +159,7 @@ function App() {
                 <div
                   key={index}
                   className="record card bg-dark text-light mb-2 p-2"
+                  style={{ position: 'relative' }}
                 >
                   <div>
                     <h4>{record.procedureName}</h4>
@@ -192,10 +190,10 @@ function App() {
                   <div>
                     <span>Técnico: {record.radiologistName}</span>
                   </div>
-                  <div>
+                  <div style={{ position: 'absolute', bottom: '10px', right: '10px' }}>
                     <button
-                      className="btn btn-sm btn-danger float-end d-flex align-items-center justify-content-center"
-                      onClick={() => openModal(index)}
+                      className="btn btn-sm btn-danger d-flex align-items-center justify-content-center"
+                      onClick={() => openModal(index, 'record')}
                     >
                       <FaTrashAlt />
                     </button>
@@ -211,11 +209,19 @@ function App() {
             <div>
               <h2>Eventos de Contraste</h2>
               {contrastEvents.map((event, index) => (
-                <div key={index} className="event">
+                <div key={index} className="event bg-secondary text-light p-3 mb-3 rounded" style={{ position: 'relative' }}>
                   <div>Data: {event.occurrenceDate}</div>
                   <div>Quantidade de Contraste: {event.contrastAmount} mL</div>
                   <div>ID do Paciente: {event.patientId}</div>
                   <div>Primeiro Nome do Paciente: {event.patientFirstName}</div>
+                  <div style={{ position: 'absolute', bottom: '90px', right: '10px' }}>
+                    <button
+                      className="btn btn-sm btn-danger d-flex align-items-center justify-content-center"
+                      onClick={() => openModal(index, 'contrastEvent')}
+                    >
+                      <FaTrashAlt />
+                    </button>
+                  </div>
                 </div>
               ))}
             </div>
