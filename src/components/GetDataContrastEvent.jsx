@@ -44,7 +44,7 @@ function GetDataContrastEvent({ addContrastEvent }) {
   };
 
   return (
-<div className="card bg-dark text-light">
+    <div className="card bg-dark text-light">
       <div className="card-body">
         <h2 className="card-title">Eventos Adversos</h2>
         <form onSubmit={handleSubmit} className="form">
@@ -63,18 +63,6 @@ function GetDataContrastEvent({ addContrastEvent }) {
               <option value="reação alérgica">Reação Alérgica</option>
               <option value="outros">Outros</option>
             </select>
-          </div>
-          <div className="form-group mb-4">
-            <label>Quantidade de Contraste (mL)</label>
-            <input
-              type="text"
-              name="contrastAmount"
-              placeholder="Quantidade de contraste extravasado em mL"
-              value={formData.contrastAmount}
-              onChange={handleChange}
-              required
-              className="form-control bg-dark text-light"
-            />
           </div>
           <div className="form-group mb-4">
             <label>Data de Ocorrência</label>
@@ -100,7 +88,7 @@ function GetDataContrastEvent({ addContrastEvent }) {
             />
           </div>
           <div className="form-group mb-4">
-            <label>Primeiro Nome do Paciente</label>
+            <label>Nome do Paciente</label>
             <input
               type="text"
               name="patientFirstName"
@@ -119,8 +107,10 @@ function GetDataContrastEvent({ addContrastEvent }) {
               value={formData.report}
               onChange={handleChange}
               required
+              maxLength={200}
               className="form-control bg-dark text-light"
             ></textarea>
+            <small className="text-light">{formData.report.length}/200</small>
           </div>
           <div className="d-flex justify-content-between mt-3">
             <button type="button" className="btn btn-secondary" onClick={clearForm}>

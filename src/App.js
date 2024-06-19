@@ -1,20 +1,30 @@
-import { FaPlus, FaTimes } from "react-icons/fa";
-import React, { useState } from "react";
-import "./App.css";
-import { jsPDF } from "jspdf";
-import "jspdf-autotable";
-import GetDataRadiologySupport from "./components/GetDataRadiologySupport";
-import PdfAnalysis from "./components/PdfAnalysis";
-import Header from "./components/Header";
-import ConfirmDeleteModal from "./components/ConfirmDeleteModal";
-import GetDataContrastEvent from "./components/GetDataContrastEvent";
+import { GoMoveToEnd } from 'react-icons/go';
+import { MdStart } from 'react-icons/md';
+import { FaHourglassEnd } from 'react-icons/fa6';
+import { LuTimer } from 'react-icons/lu';
+import {
+  FaCalendarAlt,
+  FaClock,
+  FaUserMd,
+  FaUserNurse,
+  FaProcedures,
+} from 'react-icons/fa';
+import { FaPlus, FaTimes, FaTrashAlt } from 'react-icons/fa';
+import React, { useState } from 'react';
+import './App.css';
+import { jsPDF } from 'jspdf';
+import 'jspdf-autotable';
+import GetDataRadiologySupport from './components/GetDataRadiologySupport';
+import PdfAnalysis from './components/PdfAnalysis';
+import Header from './components/Header';
+import ConfirmDeleteModal from './components/ConfirmDeleteModal';
+import GetDataContrastEvent from './components/GetDataContrastEvent';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 
 function App() {
   const [records, setRecords] = useState([]);
   const [contrastEvents, setContrastEvents] = useState([]);
-  const [pdfResults, setPdfResults] = useState("");
+  const [pdfResults, setPdfResults] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [indexToDelete, setIndexToDelete] = useState(null);
 
@@ -49,15 +59,15 @@ function App() {
     let yOffset = 10;
 
     doc.setFontSize(16);
-    doc.text("Relatório de Procedimentos Realizados", marginLeft, yOffset);
+    doc.text('Relatório de Procedimentos Realizados', marginLeft, yOffset);
     yOffset += 15;
 
     doc.setFontSize(14);
-    doc.text("Relatório de exames:", marginLeft, yOffset);
+    doc.text('Relatório de exames:', marginLeft, yOffset);
     yOffset += 10;
 
     doc.setFontSize(12);
-    pdfResults.split("\n").forEach((line) => {
+    pdfResults.split('\n').forEach((line) => {
       doc.text(line, marginLeft, yOffset);
       yOffset += 7;
     });
@@ -66,7 +76,7 @@ function App() {
 
     if (contrastEvents.length > 0) {
       doc.setFontSize(14);
-      doc.text("Eventos de Contraste:", marginLeft, yOffset);
+      doc.text('Eventos de Contraste:', marginLeft, yOffset);
       yOffset += 10;
 
       contrastEvents.forEach((event) => {
@@ -75,7 +85,7 @@ function App() {
         doc.text(
           `Quantidade de Contraste: ${event.contrastAmount} mL`,
           marginLeft,
-          yOffset
+          yOffset,
         );
         yOffset += 7;
         doc.text(`ID do Paciente: ${event.patientId}`, marginLeft, yOffset);
@@ -87,7 +97,7 @@ function App() {
 
     if (records.length > 0) {
       doc.setFontSize(14);
-      doc.text("Registros Cirúrgicos:", marginLeft, yOffset);
+      doc.text('Registros Cirúrgicos:', marginLeft, yOffset);
       yOffset += 10;
 
       const tableData = records.map((record) => [
@@ -103,12 +113,12 @@ function App() {
         startY: yOffset,
         head: [
           [
-            "Data",
-            "Início - Término",
-            "Tempo Gasto",
-            "Médico",
-            "Técnico",
-            "Procedimento",
+            'Data',
+            'Início - Término',
+            'Tempo Gasto',
+            'Médico',
+            'Técnico',
+            'Procedimento',
           ],
         ],
         body: tableData,
@@ -116,21 +126,21 @@ function App() {
         styles: {
           cellPadding: 3,
           fontSize: 12,
-          halign: "center",
-          valign: "middle",
+          halign: 'center',
+          valign: 'middle',
         },
         headStyles: {
           fillColor: [0, 77, 153],
-          halign: "center",
-          valign: "middle",
+          halign: 'center',
+          valign: 'middle',
         },
-        theme: "grid",
+        theme: 'grid',
       });
 
       yOffset = doc.lastAutoTable.finalY + 10;
     }
 
-    doc.save("relatorio_procedimentos.pdf");
+    doc.save('relatorio_procedimentos.pdf');
   };
 
   return (
@@ -149,40 +159,46 @@ function App() {
           {records.length > 0 && (
             <div className="results">
               {records.map((record, index) => (
-                <div key={index} className="record">
-                  <button
-                    className="remove-button"
-                    onClick={() => openModal(index)}
+                <div
+                  key={index}
+                  className="record card bg-dark text-light mb-2 p-2"
+                >
+                  <div>
+                    <h4>{record.procedureName}</h4>
+                  </div>
+                  <div>
+                    <span>Data: {record.date}</span>
+                  </div>
+                  <div
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                    }}
                   >
-                    X
-                  </button>
-                  <div>
-                    <label>Data: </label>
-                    <span>{record.date}</span>
+                    <div>
+                      <span>Início: {record.startTime}</span>
+                    </div>
+                    <div>
+                      <span>Término: {record.endTime}</span>
+                    </div>
+                    <div>
+                      <span>Tempo gasto: {record.timeSpent}</span>
+                    </div>
                   </div>
                   <div>
-                    <label>Início: </label>
-                    <span>{record.startTime}</span>
+                    <span>Médico: {record.doctorName}</span>
                   </div>
                   <div>
-                    <label>Término: </label>
-                    <span>{record.endTime}</span>
+                    <span>Técnico: {record.radiologistName}</span>
                   </div>
                   <div>
-                    <label>Tempo gasto: </label>
-                    <span>{record.timeSpent}</span>
-                  </div>
-                  <div>
-                    <label>Médico: </label>
-                    <span>{record.doctorName}</span>
-                  </div>
-                  <div>
-                    <label>Técnico: </label>
-                    <span>{record.radiologistName}</span>
-                  </div>
-                  <div>
-                    <label>Procedimento: </label>
-                    <span>{record.procedureName}</span>
+                    <button
+                      className="btn btn-sm btn-danger float-end d-flex align-items-center justify-content-center"
+                      onClick={() => openModal(index)}
+                    >
+                      <FaTrashAlt />
+                    </button>
                   </div>
                 </div>
               ))}
