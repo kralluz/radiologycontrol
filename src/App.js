@@ -144,88 +144,103 @@ function App() {
     <div className="App">
       <Header />
       <PdfAnalysis setPdfResults={setPdfResults} />
-      <button
-        onClick={generatePdfDocument}
-        className="generate-pdf-button float"
-      >
+      <button onClick={generatePdfDocument} className="generate-pdf-button float">
         Gerar PDF dos Dados
       </button>
-      <div className="main">
-        <div className="surgical-center">
-          <GetDataRadiologySupport addRecord={addRecord} />
-          {records.length > 0 && (
-            <div className="results">
-              {records.map((record, index) => (
-                <div
-                  key={index}
-                  className="record card bg-dark text-light mb-2 p-2"
-                  style={{ position: 'relative' }}
-                >
-                  <div>
-                    <h4>{record.procedureName}</h4>
-                  </div>
-                  <div>
-                    <span>Data: {record.date}</span>
-                  </div>
+      <div className="container">
+        <div className="row">
+          <div className="col-md-6 surgical-center bg-dark text-light p-3">
+            <GetDataRadiologySupport addRecord={addRecord} />
+            {records.length > 0 && (
+              <div className="results">
+                {records.map((record, index) => (
                   <div
-                    style={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                    }}
+                    key={index}
+                    className="record card bg-dark text-light mb-2 p-2"
+                    style={{ position: 'relative' }}
                   >
                     <div>
-                      <span>Início: {record.startTime}</span>
+                      <h4>{record.procedureName}</h4>
                     </div>
                     <div>
-                      <span>Término: {record.endTime}</span>
+                      <span>Data: {record.date}</span>
                     </div>
-                    <div>
-                      <span>Tempo gasto: {record.timeSpent}</span>
-                    </div>
-                  </div>
-                  <div>
-                    <span>Médico: {record.doctorName}</span>
-                  </div>
-                  <div>
-                    <span>Técnico: {record.radiologistName}</span>
-                  </div>
-                  <div style={{ position: 'absolute', bottom: '10px', right: '10px' }}>
-                    <button
-                      className="btn btn-sm btn-danger d-flex align-items-center justify-content-center"
-                      onClick={() => openModal(index, 'record')}
+                    <div
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                      }}
                     >
-                      <FaTrashAlt />
-                    </button>
+                      <div>
+                        <span>Início: {record.startTime}</span>
+                      </div>
+                      <div>
+                        <span>Término: {record.endTime}</span>
+                      </div>
+                      <div>
+                        <span>Tempo gasto: {record.timeSpent}</span>
+                      </div>
+                    </div>
+                    <div>
+                      <span>Médico: {record.doctorName}</span>
+                    </div>
+                    <div>
+                      <span>Técnico: {record.radiologistName}</span>
+                    </div>
+                    <div style={{ position: 'absolute', bottom: '10px', right: '10px' }}>
+                      <button
+                        className="btn btn-sm btn-danger d-flex align-items-center justify-content-center"
+                        onClick={() => openModal(index, 'record')}
+                      >
+                        <FaTrashAlt />
+                      </button>
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
-          )}
+                ))}
+              </div>
+            )}
+          </div>
+          <div className="col-md-6 contrast-events bg-dark text-light p-3">
+            <GetDataContrastEvent addContrastEvent={addContrastEvent} />
+            {contrastEvents.length > 0 && (
+              <div>
+                <h2>Eventos adversos</h2>
+                <div>
+<div className="dark-theme">
+  {contrastEvents.map((event, index) => (
+    <div
+      key={index}
+      className="event card bg-dark text-light p-3 mb-3 rounded"
+      style={{ position: 'relative' }}
+    >
+      <div className="card-body">
+        <div className="mb-2">
+          <strong>Data:</strong> {event.occurrenceDate}
         </div>
-        <div className="contrast-events">
-          <GetDataContrastEvent addContrastEvent={addContrastEvent} />
-          {contrastEvents.length > 0 && (
-            <div>
-              <h2>Eventos de Contraste</h2>
-              {contrastEvents.map((event, index) => (
-                <div key={index} className="event bg-secondary text-light p-3 mb-3 rounded" style={{ position: 'relative' }}>
-                  <div>Data: {event.occurrenceDate}</div>
-                  <div>Quantidade de Contraste: {event.contrastAmount} mL</div>
-                  <div>ID do Paciente: {event.patientId}</div>
-                  <div>Primeiro Nome do Paciente: {event.patientFirstName}</div>
-                  <div style={{ position: 'absolute', bottom: '90px', right: '10px' }}>
-                    <button
-                      className="btn btn-sm btn-danger d-flex align-items-center justify-content-center"
-                      onClick={() => openModal(index, 'contrastEvent')}
-                    >
-                      <FaTrashAlt />
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
+        <div className="mb-2">
+          <strong>ID do Paciente:</strong> {event.patientId}
+        </div>
+        <div className="mb-2">
+          <strong>Primeiro Nome do Paciente:</strong> {event.patientFirstName}
+        </div>
+        <button
+          className="btn btn-sm btn-danger d-flex align-items-center justify-content-center"
+          style={{ position: 'absolute', bottom: '10px', right: '10px' }}
+          onClick={() => openModal(index, 'contrastEvent')}
+        >
+          <FaTrashAlt />
+        </button>
+      </div>
+    </div>
+  ))}
+</div>
+
+</div>
+
+              </div>
+            )}
+          </div>
         </div>
       </div>
       <ConfirmDeleteModal
