@@ -131,3 +131,11 @@ function GetDataContrastEvent({ addContrastEvent }) {
 }
 
 export default GetDataContrastEvent;
+
+function rotateArrow(element) {
+  element.classList.add('active');
+}
+
+function resetArrow(element) {
+  element.classList.remove('active');
+}

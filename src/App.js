@@ -9,10 +9,12 @@ import Header from './components/Header';
 import ConfirmDeleteModal from './components/ConfirmDeleteModal';
 import GetDataContrastEvent from './components/GetDataContrastEvent';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import StorageMonitor from './components/StorageMonitor ';
+import useLocalStorage from './components/useLocalStorage';
 
 function App() {
-  const [records, setRecords] = useState([]);
-  const [contrastEvents, setContrastEvents] = useState([]);
+  const [records, setRecords] = useLocalStorage('records', []);
+  const [contrastEvents, setContrastEvents] = useLocalStorage('contrastEvents', []);
   const [pdfResults, setPdfResults] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [indexToDelete, setIndexToDelete] = useState(null);
@@ -282,8 +284,10 @@ function App() {
         onRequestClose={closeModal}
         onConfirm={confirmDelete}
       />
+      <StorageMonitor />
     </div>
   );
 }
 
 export default App;
+
