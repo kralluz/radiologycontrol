@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import { FaPlus, FaTimes } from "react-icons/fa";
+import React, { useState } from 'react';
+import { FaPlus, FaTimes } from 'react-icons/fa';
 
 function GetDataRadiologySupport({ addRecord }) {
   const [formData, setFormData] = useState({
-    date: "",
-    startTime: "",
-    endTime: "",
-    doctorName: "",
-    radiologistName: "",
-    procedureName: "",
+    date: '',
+    startTime: '',
+    endTime: '',
+    doctorName: '',
+    radiologistName: '',
+    procedureName: '',
   });
 
   const calculateTimeSpent = (startTime, endTime) => {
@@ -23,29 +23,35 @@ function GetDataRadiologySupport({ addRecord }) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const formatDate = (date) => {
+    const [year, month, day] = date.split('-');
+    return `${day} / ${month} / ${year}`;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const timeSpent = calculateTimeSpent(formData.startTime, formData.endTime);
-    const dataWithTimeSpent = { ...formData, timeSpent };
+    const formattedDate = formatDate(formData.date);
+    const dataWithTimeSpent = { ...formData, date: formattedDate, timeSpent };
     addRecord(dataWithTimeSpent);
     setFormData({
-      date: "",
-      startTime: "",
-      endTime: "",
-      doctorName: "",
-      radiologistName: "",
-      procedureName: "",
+      date: '',
+      startTime: '',
+      endTime: '',
+      doctorName: '',
+      radiologistName: '',
+      procedureName: '',
     });
   };
 
   const clearForm = () => {
     setFormData({
-      date: "",
-      startTime: "",
-      endTime: "",
-      doctorName: "",
-      radiologistName: "",
-      procedureName: "",
+      date: '',
+      startTime: '',
+      endTime: '',
+      doctorName: '',
+      radiologistName: '',
+      procedureName: '',
     });
   };
 
@@ -127,7 +133,11 @@ function GetDataRadiologySupport({ addRecord }) {
           </div>
 
           <div className="d-flex justify-content-between mt-3">
-            <button type="button" className="btn btn-secondary" onClick={clearForm}>
+            <button
+              type="button"
+              className="btn btn-secondary"
+              onClick={clearForm}
+            >
               <FaTimes /> Limpar
             </button>
             <button type="submit" className="btn btn-primary">

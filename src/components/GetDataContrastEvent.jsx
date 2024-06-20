@@ -65,7 +65,7 @@ function GetDataContrastEvent({ addContrastEvent }) {
             </select>
           </div>
           <div className="form-group mb-4">
-            <label>Data de Ocorrência</label>
+            <label>Data da Ocorrência:</label>
             <input
               type="date"
               name="occurrenceDate"
@@ -76,7 +76,7 @@ function GetDataContrastEvent({ addContrastEvent }) {
             />
           </div>
           <div className="form-group mb-4">
-            <label>ID do Paciente</label>
+            <label>ID do Paciente:</label>
             <input
               type="text"
               name="patientId"
@@ -88,7 +88,7 @@ function GetDataContrastEvent({ addContrastEvent }) {
             />
           </div>
           <div className="form-group mb-4">
-            <label>Nome do Paciente</label>
+            <label>Nome</label>
             <input
               type="text"
               name="patientFirstName"

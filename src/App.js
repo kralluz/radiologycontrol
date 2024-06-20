@@ -10,7 +10,6 @@ import ConfirmDeleteModal from './components/ConfirmDeleteModal';
 import GetDataContrastEvent from './components/GetDataContrastEvent';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
 function App() {
   const [records, setRecords] = useState([]);
   const [contrastEvents, setContrastEvents] = useState([]);
@@ -44,7 +43,9 @@ function App() {
       if (deleteType === 'record') {
         setRecords(records.filter((_, index) => index !== indexToDelete));
       } else if (deleteType === 'contrastEvent') {
-        setContrastEvents(contrastEvents.filter((_, index) => index !== indexToDelete));
+        setContrastEvents(
+          contrastEvents.filter((_, index) => index !== indexToDelete),
+        );
       }
       closeModal();
     }
@@ -144,7 +145,10 @@ function App() {
     <div className="App">
       <Header />
       <PdfAnalysis setPdfResults={setPdfResults} />
-      <button onClick={generatePdfDocument} className="generate-pdf-button float">
+      <button
+        onClick={generatePdfDocument}
+        className="generate-pdf-button float"
+      >
         Gerar PDF dos Dados
       </button>
       <div className="container">
@@ -153,18 +157,23 @@ function App() {
             <GetDataRadiologySupport addRecord={addRecord} />
             {records.length > 0 && (
               <div className="results">
+                <h2 style={{ textAlign: 'center' }}>Registros Cirúrgicos</h2>
                 {records.map((record, index) => (
                   <div
                     key={index}
                     className="record card bg-dark text-light mb-2 p-2"
                     style={{ position: 'relative' }}
                   >
-                    <div>
-                      <h4>{record.procedureName}</h4>
+                    <div
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                      }}
+                    >
+                      <h5>{record.procedureName}</h5>
+                      <strong>{record.date}</strong>
                     </div>
-                    <div>
-                      <span>Data: {record.date}</span>
-                    </div>
+                    <div></div>
                     <div
                       style={{
                         display: 'flex',
@@ -173,22 +182,40 @@ function App() {
                       }}
                     >
                       <div>
-                        <span>Início: {record.startTime}</span>
+                        <span>
+                          <strong>Início: </strong>
+                          {record.startTime}
+                        </span>
                       </div>
                       <div>
-                        <span>Término: {record.endTime}</span>
+                        <span>
+                          <strong>Término: </strong>
+                          {record.endTime}
+                        </span>
                       </div>
                       <div>
-                        <span>Tempo gasto: {record.timeSpent}</span>
+                        <span>
+                          <strong>Tempo gasto:</strong> {record.timeSpent}
+                        </span>
                       </div>
                     </div>
                     <div>
-                      <span>Médico: {record.doctorName}</span>
+                      <span>
+                        <strong>Médico:</strong> {record.doctorName}
+                      </span>
                     </div>
                     <div>
-                      <span>Técnico: {record.radiologistName}</span>
+                      <span>
+                        <strong>Técnico:</strong> {record.radiologistName}
+                      </span>
                     </div>
-                    <div style={{ position: 'absolute', bottom: '10px', right: '10px' }}>
+                    <div
+                      style={{
+                        position: 'absolute',
+                        bottom: '10px',
+                        right: '10px',
+                      }}
+                    >
                       <button
                         className="btn btn-sm btn-danger d-flex align-items-center justify-content-center"
                         onClick={() => openModal(index, 'record')}
@@ -204,40 +231,47 @@ function App() {
           <div className="col-md-6 contrast-events bg-dark text-light p-3">
             <GetDataContrastEvent addContrastEvent={addContrastEvent} />
             {contrastEvents.length > 0 && (
-              <div>
-                <h2>Eventos adversos</h2>
+              <div className="results">
+                <h2 style={{ textAlign: 'center' }}>Eventos Adversos</h2>
                 <div>
-<div className="dark-theme">
-  {contrastEvents.map((event, index) => (
-    <div
-      key={index}
-      className="event card bg-dark text-light p-3 mb-3 rounded"
-      style={{ position: 'relative' }}
-    >
-      <div className="card-body">
-        <div className="mb-2">
-          <strong>Data:</strong> {event.occurrenceDate}
-        </div>
-        <div className="mb-2">
-          <strong>ID do Paciente:</strong> {event.patientId}
-        </div>
-        <div className="mb-2">
-          <strong>Primeiro Nome do Paciente:</strong> {event.patientFirstName}
-        </div>
-        <button
-          className="btn btn-sm btn-danger d-flex align-items-center justify-content-center"
-          style={{ position: 'absolute', bottom: '10px', right: '10px' }}
-          onClick={() => openModal(index, 'contrastEvent')}
-        >
-          <FaTrashAlt />
-        </button>
-      </div>
-    </div>
-  ))}
-</div>
-
-</div>
-
+                  {contrastEvents.map((event, index) => (
+                    <div
+                      key={index}
+                      className="record card bg-dark text-light mb-2 p-2"
+                      style={{ position: 'relative' }}
+                    >
+                      <div>
+                        <h3> {event.eventType}</h3>
+                        <div>
+                          <strong>Data da Ocorrência:</strong>{' '}
+                          {event.occurrenceDate}
+                        </div>
+                        <div>
+                          <strong>ID do Paciente:</strong> {event.patientId}
+                        </div>
+                        <div>
+                          <strong>Primeiro Nome do Paciente:</strong>{' '}
+                          {event.patientFirstName}
+                        </div>
+                        <div>
+                          <strong>Relatório:</strong>{' '}
+                          <p className="report-box">{event.report}</p>
+                        </div>
+                        <button
+                          className="btn btn-sm btn-danger d-flex align-items-center justify-content-center"
+                          style={{
+                            position: 'absolute',
+                            right: '10px',
+                            top: '10px',
+                          }}
+                          onClick={() => openModal(index, 'contrastEvent')}
+                        >
+                          <FaTrashAlt />
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             )}
           </div>
