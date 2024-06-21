@@ -1,11 +1,20 @@
-/* Header.css */
+@font-face {
+  font-family: 'HandwritingDraft';
+  src: url('/assets/Fonts/handwriting_black_draft/handwriting-black-draft_DEMO.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.logo {
+  font-family: 'HandwritingDraft';
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 1);
+}
+
 
 #header {
     background: linear-gradient(135deg, #004d99, #001f4d); /* Gradiente de azul escuro */
-    color: #ffffff; /* Texto branco */
     padding: 20px 10px;
     margin-bottom: 30px;
-    font-size: 24px;
     text-align: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Sombra mais acentuada */
     border-radius: 8px;

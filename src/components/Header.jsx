@@ -5,8 +5,8 @@ import './Header.css'; // Supondo que você esteja usando um arquivo CSS dedicad
 function Header() {
   return (
     <div id="header">
-      <h1>RadiologyControl</h1>
-      <p>Gerenciamento e análise de dados radiológicos</p>
+      <h1 className='logo'>RadiologyControl</h1>
+      <p className='subtitle'>Gerenciamento e análise de dados radiológicos</p>
     </div>
   );
 }
