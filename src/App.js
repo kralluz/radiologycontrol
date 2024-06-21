@@ -1,3 +1,4 @@
+import { FaRegFilePdf } from "react-icons/fa6";
 import React, { useState } from 'react';
 import { FaTrashAlt } from 'react-icons/fa';
 import './App.css';
@@ -151,7 +152,7 @@ function App() {
         onClick={generatePdfDocument}
         className="generate-pdf-button float"
       >
-        Gerar PDF dos Dados
+       <FaRegFilePdf size={25} />
       </button>
       <div className="container">
         <div className="row">
@@ -285,6 +286,7 @@ function App() {
         onConfirm={confirmDelete}
       />
       <StorageMonitor />
+      <footer></footer>
     </div>
   );
 }

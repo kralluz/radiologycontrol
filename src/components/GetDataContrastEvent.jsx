@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { FaTimes, FaPlus } from 'react-icons/fa';
 import './GetDataContrastEvent.css';
 
 function GetDataContrastEvent({ addContrastEvent }) {
@@ -115,13 +114,13 @@ function GetDataContrastEvent({ addContrastEvent }) {
           <div className="d-flex justify-content-between mt-3">
             <button
               type="button"
-              className="btn btn-secondary"
+              className="btn btn-danger"
               onClick={clearForm}
             >
-              <FaTimes /> Limpar
+             Limpar
             </button>
             <button type="submit" className="btn btn-primary">
-              <FaPlus /> Adicionar
+              Adicionar
             </button>
           </div>
         </form>
@@ -131,11 +130,3 @@ function GetDataContrastEvent({ addContrastEvent }) {
 }
 
 export default GetDataContrastEvent;
-
-function rotateArrow(element) {
-  element.classList.add('active');
-}
-
-function resetArrow(element) {
-  element.classList.remove('active');
-}

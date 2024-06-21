@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { FaPlus, FaTimes } from 'react-icons/fa';
 
 function GetDataRadiologySupport({ addRecord }) {
   const [formData, setFormData] = useState({
@@ -135,13 +134,13 @@ function GetDataRadiologySupport({ addRecord }) {
           <div className="d-flex justify-content-between mt-3">
             <button
               type="button"
-              className="btn btn-secondary"
+              className="btn btn-danger"
               onClick={clearForm}
             >
-              <FaTimes /> Limpar
+              Limpar
             </button>
             <button type="submit" className="btn btn-primary">
-              <FaPlus /> Adicionar
+              Adicionar
             </button>
           </div>
         </form>

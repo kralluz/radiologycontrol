@@ -1,3 +1,7 @@
+footer{
+  padding-bottom: 100px;
+}
+
 .form-group textarea {
     background-color: #343a40;
     color: #ffffff;
@@ -21,3 +25,27 @@
     color: #ffffff;
     text-align: right;
   }
+
+  /* Estilos para telas de 320px */
+@media (max-width: 320px) {
+  /* Adicione aqui os estilos específicos para telas de 320px */
+  body {
+    font-size: 1rem !important;
+  }
+  .container {
+      padding: 10px;
+  }
+  /* Outros estilos para 320px */
+}
+
+/* Estilos para telas de 425px */
+@media (max-width: 425px) {
+  /* Adicione aqui os estilos específicos para telas de 425px */
+  body {
+      font-size: 1rem !important;
+  }
+  .container {
+      padding: 15px;
+  }
+  /* Outros estilos para 425px */
+}
