@@ -218,3 +218,9 @@ select:focus {
   background: linear-gradient(135deg, #006400, #228B22);
   transform: scale(1.05);
 }
+
+.div-btn-delete {
+  position: 'absolute';
+  bottom: '10px';
+  right: '10px';
+}

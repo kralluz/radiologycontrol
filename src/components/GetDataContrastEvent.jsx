@@ -3,8 +3,7 @@ import './GetDataContrastEvent.css';
 
 function GetDataContrastEvent({ addContrastEvent }) {
   const [formData, setFormData] = useState({
-    eventType: 'extravasamento de contraste',
-    contrastAmount: '',
+    eventType: 'Extravasamento de contraste',
     occurrenceDate: '',
     patientId: '',
     patientFirstName: '',
@@ -22,8 +21,7 @@ function GetDataContrastEvent({ addContrastEvent }) {
     addContrastEvent(formData);
     setSubmittedData(formData);
     setFormData({
-      eventType: 'extravasamento de contraste',
-      contrastAmount: '',
+      eventType: 'Extravasamento de contraste',
       occurrenceDate: '',
       patientId: '',
       patientFirstName: '',
@@ -33,8 +31,7 @@ function GetDataContrastEvent({ addContrastEvent }) {
 
   const clearForm = () => {
     setFormData({
-      eventType: 'extravasamento de contraste',
-      contrastAmount: '',
+      eventType: 'Extravasamento de contraste',
       occurrenceDate: '',
       patientId: '',
       patientFirstName: '',
@@ -56,7 +53,7 @@ function GetDataContrastEvent({ addContrastEvent }) {
               className="form-control bg-dark text-light"
               required
             >
-              <option value="extravasamento de contraste">
+              <option value="Extravasamento de contraste">
                 Extravasamento de Contraste
               </option>
               <option value="reação alérgica">Reação Alérgica</option>

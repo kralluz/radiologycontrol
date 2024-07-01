@@ -12,6 +12,10 @@ import GetDataContrastEvent from './components/GetDataContrastEvent';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import StorageMonitor from './components/StorageMonitor ';
 import useLocalStorage from './components/useLocalStorage';
+import EditModal from "./components/EditModal/EditModal";
+import EditAdverseEventModal from "./components/EditAdverseEventModal";
+
+
 
 function App() {
   const [records, setRecords] = useLocalStorage('records', []);
@@ -20,13 +24,47 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [indexToDelete, setIndexToDelete] = useState(null);
   const [deleteType, setDeleteType] = useState('');
+  const [isModalEdit, setIsModalEdit] = useState(false);
+  const [itemToEdit, setItemToEdit] = useState(null);
+  const [editType, setEditType] = useState('');
+  const [editEvents, setEditEvents] = useState(true);
+  // Função para abrir o modal de edição
+  const openEditModal = (index, type) => {
+    setItemToEdit(type === 'record' ? records[index] : contrastEvents[index]);
+    setEditType(type);
+    setIsModalEdit(true);
+  };
 
+  // Função para fechar o modal de edição
+  const closeEditModal = () => {
+    setIsModalEdit(false);
+    setItemToEdit(null);
+    setEditType('');
+  };
+
+  // Função para confirmar a edição
+  const confirmEdit = (updatedItem, type) => {
+    if (type === 'record') {
+      const updatedRecords = records.map((record) =>
+        record === itemToEdit ? updatedItem : record
+      );
+      setRecords(updatedRecords);
+    } else if (type === 'contrastEvent') {
+      const updatedEvents = contrastEvents.map((event) =>
+        event === itemToEdit ? updatedItem : event
+      );
+      setContrastEvents(updatedEvents);
+    }
+    closeEditModal();
+  };
+  
   const addContrastEvent = (newEvent) => {
     setContrastEvents([...contrastEvents, newEvent]);
   };
 
   const addRecord = (newRecord) => {
     setRecords([...records, newRecord]);
+    console.log(records);
   };
 
   const openModal = (index, type) => {
@@ -176,7 +214,9 @@ function App() {
                       <h5>{record.procedureName}</h5>
                       <strong>{record.date}</strong>
                     </div>
-                    <div></div>
+                    <div>
+                      
+                    </div>
                     <div
                       style={{
                         display: 'flex',
@@ -219,6 +259,7 @@ function App() {
                         right: '10px',
                       }}
                     >
+                      <button onClick={() => openEditModal(index, 'record')} className="btn btn-primary">Editar</button>
                       <button
                         className="btn btn-sm btn-danger d-flex align-items-center justify-content-center"
                         onClick={() => openModal(index, 'record')}
@@ -260,17 +301,20 @@ function App() {
                           <strong>Relatório:</strong>{' '}
                           <p className="report-box">{event.report}</p>
                         </div>
+                        <div className=" d-flex align-items-center justify-content-center">
+                        <button  onClick={() => setEditEvents(true)} className="btn btn-primary">Editar</button>
                         <button
-                          className="btn btn-sm btn-danger d-flex align-items-center justify-content-center"
+                          className="btn btn-sm btn-danger"
                           style={{
                             position: 'absolute',
                             right: '10px',
                             top: '10px',
                           }}
                           onClick={() => openModal(index, 'contrastEvent')}
-                        >
+                          >
                           <FaTrashAlt />
                         </button>
+                          </div>
                       </div>
                     </div>
                   ))}
@@ -286,7 +330,20 @@ function App() {
         onConfirm={confirmDelete}
       />
       <StorageMonitor />
-      <footer></footer>
+      <EditModal
+        isOpen={isModalEdit && itemToEdit !== null}
+        onRequestClose={closeEditModal}
+        onConfirm={confirmEdit}
+        itemToEdit={itemToEdit}
+        itemType={editType}
+      />
+      <EditAdverseEventModal
+        isOpen={editEvents}
+        onRequestClose={() => setEditEvents(false)}
+        onConfirm={confirmEdit}
+        itemToEdit={itemToEdit}
+        itemType={editType}
+      />
     </div>
   );
 }
