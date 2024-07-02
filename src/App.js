@@ -259,7 +259,7 @@
                           right: '10px',
                         }}
                       >
-                        <button onClick={() => openEditModal(index, 'record')} className="btn btn-primary">Editar</button>
+                        {/* <button onClick={() => openEditModal(index, 'record')} className="btn btn-primary">Editar</button> */}
                         <button
                           className="btn btn-sm btn-danger d-flex align-items-center justify-content-center"
                           onClick={() => openModal(index, 'record')}
@@ -302,7 +302,7 @@
                             <p className="report-box">{event.report}</p>
                           </div>
                           <div className=" d-flex align-items-center justify-content-center">
-                          <button  onClick={() => setEditEvents(true)} className="btn btn-primary">Editar</button>
+                          {/* <button  onClick={() => setEditEvents(true)} className="btn btn-primary">Editar</button> */}
                           <button
                             className="btn btn-sm btn-danger"
                             style={{

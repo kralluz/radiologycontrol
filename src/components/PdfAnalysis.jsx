@@ -94,6 +94,16 @@ function PdfAnalysis({ setPdfResults }) {
     processPDF(e.target.files[0]);
   };
 
+  const handleRemoveFile = () => {
+    setFileUploaded(false);
+    setAnalysisResults("");
+    setTcCount(0);
+    setRxCount(0);
+    setLombarFemurCount(0);
+    setCorpoInteiroCount(0);
+    setPdfResults("");
+  };
+
   return (
     <div className="pdf-analysis-container">
       {!fileUploaded ? (
@@ -122,6 +132,9 @@ function PdfAnalysis({ setPdfResults }) {
           <p>Tomografias realizadas: {tcCount}</p>
           <p>Raio-x realizados: {rxCount}</p>
           <p>Desitometrias realizadas: {lombarFemurCount + corpoInteiroCount}</p>
+          <button onClick={handleRemoveFile} className="button">
+            Remover arquivo
+          </button>
         </div>
       )}
     </div>
